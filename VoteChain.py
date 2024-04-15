@@ -30,9 +30,8 @@ class Blockchain:
         self.chain.append(new_block)
 
 class NFT:
-    def __init__(self, id, owner):
+    def __init__(self, id):
         self.id = id
-        self.owner = owner
 
 class Wallet:
     def __init__(self, name):
@@ -45,25 +44,16 @@ class Wallet:
     def count_nfts(self):
         return len(self.nfts)
 
-def create_nft():
+def nft_append(int n, list l)"
     global nft_id
-    nft_id += 1
-    nft = NFT(nft_id, "Account 1")
-    blockchain.add_block("Created NFT #" + str(nft_id))
-    wallet1.add_nft(nft)
-
-def send_nft():
-    global nft_id
-    nft_id_to_send = int(nft_id_entry.get())
-    nft_to_send = None
-    for nft in wallet1.nfts:
-        if nft.id == nft_id_to_send:
-            nft_to_send = nft
-            break
-    if nft_to_send is not None:
-        wallet2.add_nft(nft_to_send)
-        wallet1.nfts.remove(nft_to_send)
-        blockchain.add_block("Transferred NFT #" + str(nft_id_to_send) + " from Account 1 to Account 2")
+    nft = NFT(nft_id)
+    i = 0;
+    while(True):
+        if n == l[i]:
+            l[i].add_nft(nft)
+            blockchain.add_block("Created NFT #" + str(nft_id))
+        else:
+            print("NFT NOT FOUND")
 
 def count_nfts():
     global nft_id
@@ -74,6 +64,9 @@ def count_nfts():
 blockchain = Blockchain()
 wallet1 = Wallet("Account 1")
 wallet2 = Wallet("Account 2")
+Candidates = []
+for i in range(10):
+    Candidates.append(Wallet(str(i)))
 nft_id = 0
 
 root = tk.Tk()
