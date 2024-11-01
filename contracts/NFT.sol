@@ -61,19 +61,19 @@ contract MetadataNFT is ERC721, Ownable{
         NFTMetadata memory metadata = tokenIdToMetadata[tokenId];
         return (metadata.name, metadata.description, metadata.imageURL);
     }
-    function burnVote() public {
-        require(ownerOf(lastMintedTokenId)== mintedAddress,"not owner");
-        _burn(lastMintedTokenId);
-        emit voteBurned(lastMintedTokenId);
+    // function burnVote() public {
+    //     require(ownerOf(lastMintedTokenId)== mintedAddress,"not owner");
+    //     _burn(lastMintedTokenId);
+    //     emit voteBurned(lastMintedTokenId);
 
 
-    }
+    // }
     function transfervote( address to  ) public  {
         require(mintedAddress!=address(0),"vote hasnt been transferred");
         require(to!=address(0),"no addresss provided");
         _transfer(mintedAddress, to, lastMintedTokenId);
         emit VoteTransferred(mintedAddress, to, lastMintedTokenId);
-        burnVote();
+    
 
 
 
