@@ -13,6 +13,7 @@ contract MetadataNFT is ERC721, Ownable{
     }
 
     // Mapping to store metadata hashes to tokenIds
+    mapping(address=> uint256) public nftCount;
     mapping(bytes32 => uint256) public metadataToTokenId;
     mapping(uint256 => NFTMetadata) public tokenIdToMetadata;
 
@@ -49,12 +50,21 @@ contract MetadataNFT is ERC721, Ownable{
         metadataToTokenId[metadataHash] = newTokenId;
         tokenIdToMetadata[newTokenId] = metadata;
 
+        
+
+
         // Mint the NFT to the given address
         mintedAddress=to;
         lastMintedTokenId=newTokenId;
 
+
+
+        nftCount[to]++;
+
+        safeMint(to, newTokenId);
+        
+
          emit NftMinted(to,newTokenId,metadata);
-        _safeMint(to, newTokenId);
 
     }
      function getMetadata(uint256 tokenId) public view returns (string memory, string memory, string memory) {
@@ -68,9 +78,15 @@ contract MetadataNFT is ERC721, Ownable{
 
 
     // }
+    function getNFTCount(address owner) public view returns (uint256) {
+        return nftCount[owner];
+    }
     function transfervote( address to  ) public  {
         require(mintedAddress!=address(0),"vote hasnt been transferred");
         require(to!=address(0),"no addresss provided");
+        address from = mintedAddress;
+        nftCount[from]--;
+        nftCount[to]++;
         _transfer(mintedAddress, to, lastMintedTokenId);
         emit VoteTransferred(mintedAddress, to, lastMintedTokenId);
     
