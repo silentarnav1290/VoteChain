@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
+import "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 
 contract MetadataNFT is ERC721, Ownable{
 
@@ -61,7 +61,7 @@ contract MetadataNFT is ERC721, Ownable{
 
         nftCount[to]++;
 
-        safeMint(to, newTokenId);
+        _safeMint(to, newTokenId);
         
 
          emit NftMinted(to,newTokenId,metadata);

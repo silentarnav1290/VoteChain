@@ -7,6 +7,7 @@ if not already installed you will need to download following python libraries:
 1) hashlib
 2) tkinter
 3) time
+4) foundry(forge)
 
 
 after cloning the repo simply run the python file
